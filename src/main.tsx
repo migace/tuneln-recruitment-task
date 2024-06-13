@@ -2,38 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import { MantineProvider } from "@mantine/core";
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Navigate,
-} from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
 
 import "@mantine/core/styles.css";
 
-import { App } from "./App.tsx";
-import { store } from "./store.ts";
-import { Station, Stations } from "./pages";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-    children: [
-      {
-        index: true,
-        element: <Navigate to="stations" />,
-      },
-      {
-        path: "stations",
-        element: <Stations />,
-      },
-      {
-        path: "stations/:stationId",
-        element: <Station />,
-      },
-    ],
-  },
-]);
+import { store } from "./store";
+import { router } from "./router";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

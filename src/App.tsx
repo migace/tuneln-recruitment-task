@@ -1,9 +1,18 @@
-import { AppShell, Burger, Container, Flex, List, Title } from "@mantine/core";
+import {
+  AppShell,
+  Burger,
+  Container,
+  Flex,
+  List,
+  Title,
+  useMantineTheme,
+} from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { NavLink, Outlet } from "react-router-dom";
 
 export const App = () => {
   const [opened, { toggle }] = useDisclosure();
+  const theme = useMantineTheme();
 
   return (
     <Container fluid bg="var(--mantine-color-gray-light)">
@@ -20,7 +29,15 @@ export const App = () => {
               <Title order={3}>Radio Stations 📻</Title>
               <List listStyleType="none">
                 <List.Item>
-                  <NavLink to="/">Home</NavLink>
+                  <NavLink
+                    to="/"
+                    style={{
+                      textDecoration: "none",
+                      color: theme.colors.gray[9],
+                    }}
+                  >
+                    Home
+                  </NavLink>
                 </List.Item>
               </List>
             </Flex>

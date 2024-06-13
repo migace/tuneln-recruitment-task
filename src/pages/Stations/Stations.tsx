@@ -1,35 +1,61 @@
-import { Flex, Select, SimpleGrid, Title } from "@mantine/core";
-import { useGetStationsQuery } from "../../services/stationsService";
+import { em, Flex, SimpleGrid, Title, Loader } from "@mantine/core";
+import { useMediaQuery } from "@mantine/hooks";
+
+import { FilterBy } from "../../components/FilterBy/FilterBy";
+
 import { StationItem } from "./StationItem";
-import { useState } from "react";
+import { useStations } from "./useStations";
 
 export const Stations = () => {
-  const { data: stations } = useGetStationsQuery();
-  const [sortBy, setSortBy] = useState<string | null>("popularity");
-
-  console.log(stations);
+  const {
+    filteredStations,
+    filterBy,
+    setFilterBy,
+    filterByOptions,
+    sortBy,
+    setSortBy,
+    isFetching,
+  } = useStations();
+  const isMobile = useMediaQuery(`(max-width: ${em(750)})`);
 
   return (
     <>
-      <Flex justify="space-between">
-        <Title order={1} mb="lg">
-          Stations
-        </Title>
-        <Flex>
-          <Select
-            label="Sort By"
-            placeholder="Pick value"
-            onChange={(value) => setSortBy(value)}
-            value={sortBy}
-            data={["React", "Angular", "Vue", "Svelte"]}
+      <Flex
+        justify="space-between"
+        align="center"
+        mb="lg"
+        direction={isMobile ? "column" : "row"}
+      >
+        <Title order={1}>Stations</Title>
+        <Flex gap={8}>
+          <FilterBy
+            placeholder="Sort by"
+            filterBy={sortBy}
+            setFilterBy={setSortBy}
+            filterByOptions={[
+              { value: "", label: "" },
+              { value: "popularity", label: "popularity" },
+              { value: "name", label: "name" },
+            ]}
+          />
+          <FilterBy
+            filterBy={filterBy}
+            setFilterBy={setFilterBy}
+            filterByOptions={filterByOptions}
           />
         </Flex>
       </Flex>
-      <SimpleGrid cols={3}>
-        {stations?.data?.map((station) => (
-          <StationItem key={station.id} data={station} />
-        ))}
-      </SimpleGrid>
+      {isFetching ? (
+        <Flex justify="center" py={150}>
+          <Loader color="blue" />
+        </Flex>
+      ) : (
+        <SimpleGrid cols={isMobile ? 1 : 3}>
+          {filteredStations.map((station) => (
+            <StationItem key={station.name} data={station} />
+          ))}
+        </SimpleGrid>
+      )}
     </>
   );
 };

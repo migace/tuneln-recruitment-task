@@ -1,13 +1,6 @@
-import {
-  Card,
-  Image,
-  Text,
-  Badge,
-  Button,
-  Group,
-  Flex,
-  Chip,
-} from "@mantine/core";
+import { Card, Text, Badge, Button, Group, Flex, Chip } from "@mantine/core";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+
 import { StationType } from "../../types";
 import { useNavigate } from "react-router-dom";
 
@@ -24,7 +17,9 @@ export const StationItem = ({ data }: StationItemProps) => {
   return (
     <Card shadow="sm" padding="lg" radius="md" withBorder>
       <Card.Section>
-        <Image src={data.imgUrl} height={160} alt={data.name} loading="lazy" />
+        <Flex justify="center" p={8}>
+          <LazyLoadImage src={data.imgUrl} height={160} alt={data.name} />
+        </Flex>
       </Card.Section>
 
       <Group justify="space-between" mt="md" mb="xs">
@@ -36,7 +31,7 @@ export const StationItem = ({ data }: StationItemProps) => {
         {data.description}
       </Text>
 
-      <Flex gap="md" mt="md">
+      <Flex gap="md" mt="md" wrap="wrap">
         {data.tags.map((tag) => (
           <Chip key={tag}>{tag}</Chip>
         ))}
