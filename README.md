@@ -1,30 +1,46 @@
-# React + TypeScript + Vite
+# Mini TuneIn Station App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a Single Page Application (SPA) that leverages the Mini TuneIn station API to display and play a list of radio stations. The application focuses on functionality, architecture, and responsive design, prioritizing the user experience for selecting and playing radio stations.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. **Homepage**
+   - Displays a list of available radio stations.
+   - Stations are presented in a user-friendly layout.
 
-## Expanding the ESLint configuration
+2. **Station Playback**
+   - Clicking on a station displays its details.
+   - Playback of the selected station begins automatically.
+   - Custom Player component with Play and Pause functionality.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+3. **Optional Features**
+   - Tags to help users decide what to listen to.
+   - Utilization of reliability and popularity information associated with each station.
 
-- Configure the top-level `parserOptions` property like this:
+## Technologies Used
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+- **React**: For building the user interface
+- **RTK Query**: For fetching data
+- **Mantine**: For styling the applicatio.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Installation and Setup
+
+1. **Clone the repository:**
+   ```sh
+   git clone https://github.com/migace/tuneln-recruitment-task.git
+   cd tuneln-recruitment-task
+   npm run dev
+   ```
+
+2. **Install dependencies:**
+    ```sh
+    npm i
+    ```
+
+3. **Start the application:**
+    ```sh
+    npm run dev
+    ```
+
+2. **Open the app in your browser**:
+Navigate to http://localhost:5173
